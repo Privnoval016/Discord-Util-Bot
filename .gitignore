@@ -1,0 +1,43 @@
+# --- Secrets: never commit these ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+
+# --- Local state ---
+data/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# --- Build output ---
+dist/
+build/
+*.tsbuildinfo
+
+# --- Dependencies ---
+node_modules/
+.pnp
+.pnp.js
+
+# --- Logs ---
+logs/
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# --- Tooling caches ---
+coverage/
+.vitest/
+.eslintcache
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json

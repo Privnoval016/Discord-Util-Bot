@@ -1,0 +1,42 @@
+{
+  "name": "discord-util-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal Discord utility bot with a pluggable feature architecture.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/src/index.js",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "deploy-commands": "tsx src/core/deploy-commands.ts",
+    "check-github": "tsx scripts/check-github.ts",
+    "doctor": "tsx scripts/doctor.ts"
+  },
+  "dependencies": {
+    "@octokit/auth-app": "^8.3.0",
+    "@octokit/plugin-retry": "^8.1.1",
+    "@octokit/plugin-throttling": "^11.0.5",
+    "@octokit/request-error": "^7.1.1",
+    "@octokit/rest": "^22.0.1",
+    "discord.js": "^14.27.0",
+    "dotenv": "^17.4.2",
+    "pino": "^10.3.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "pino-pretty": "^13.1.3",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.12",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}

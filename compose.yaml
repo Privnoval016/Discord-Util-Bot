@@ -1,0 +1,20 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    # Secrets come from .env, which is gitignored and never baked into the image.
+    env_file: .env
+    environment:
+      DATA_DIR: /data
+      NODE_ENV: production
+    volumes:
+      - bot-data:/data
+      # Mount the App private key read-only rather than embedding it in the image.
+      # Comment this out if you use the base64 GITHUB_APP_PRIVATE_KEY instead.
+      - ${GITHUB_APP_PRIVATE_KEY_PATH:-/dev/null}:/run/secrets/github-app.pem:ro
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+volumes:
+  bot-data:

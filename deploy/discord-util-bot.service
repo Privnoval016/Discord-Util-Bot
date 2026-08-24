@@ -1,0 +1,34 @@
+[Unit]
+Description=Discord Util Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=botuser
+WorkingDirectory=/opt/discord-util-bot
+EnvironmentFile=/opt/discord-util-bot/.env
+ExecStart=/usr/bin/node dist/src/index.js
+Restart=always
+RestartSec=10s
+
+# The bot exits deliberately on unhandled errors; systemd brings it back clean.
+# Without this, a crash loop would trip the default start limit and stay down.
+StartLimitIntervalSec=0
+
+# Hardening: the bot needs no inbound ports and no privileges.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/discord-util-bot/data
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
